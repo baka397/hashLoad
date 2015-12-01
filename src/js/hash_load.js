@@ -58,7 +58,7 @@
 				if($(this).attr('data-ajax')!='false'&&!href.match(/^(javascript\:|#$|$)/)){
 					var url=href,
 					load_type=$(this).attr('data-hash-load')||self.option.load,//load类型
-					tab_type=$(this).attr('data-hash-tab')||'',
+					tab_type=$(this).attr('data-hash-tab')||self.option.tab,
 					cache=$(this).attr('data-hash-cache')||self.option.cache;//缓存
 					self.setHash(url,load_type,tab_type,cache);
 				}
