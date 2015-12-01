@@ -106,7 +106,7 @@
 		 * @param  {string} type tab/load
 		 * @param  {object} list 需要扩展的加载方法
 		 */
-		update_func:function(type,list){
+		updateFunc:function(type,list){
 			var self=this;
 			if(type!='tab'||type!='load'){
 				throw '没有这个扩展方法类型';

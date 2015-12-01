@@ -54,7 +54,7 @@ cache:false//页面缓存
  * @param  {string}   action   forward/back，该动作是前进还是后退
  * @param  {Function} callback 回调函数列表，执行对应的回调操作
  */
-page.update_func('load',{
+page.updateFunc('load',{
 	'page':function(url,target,action,callback){
 		$('#hash-loading').show();
 		var self=this;
@@ -101,7 +101,7 @@ page.update_func('load',{
  * @param  {string}   target   目标ID
  * @param  {Function} callback 回调函数
  */
-page.update_func('load',{
+page.updateFunc('tab',{
 	'display':function(target,callback){
 		//tab展示前
 		callback['hashTabBeforeShow'].call();
