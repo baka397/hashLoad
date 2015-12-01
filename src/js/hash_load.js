@@ -1,6 +1,6 @@
 /**
  * hashLoad是一个移动端的页面异步加载插件
- * 依赖：zepto.js(1.1.6),touch.js(zepot，如果没有touch，则监听click事件) 或 jquery(2.1.1+ 以下版本不保证兼容性,监听click事件)
+ * 依赖：zepto.js(1.1.6),touch.js(zepot，如果没有touch，则监听click事件)
  * 创建：2015-12-1
  */
 ;(function(){
@@ -211,9 +211,9 @@
 			 */
 			'switch':function(target,callback){
 				callback['hashTabBeforeShow'].call();
-				var prev=$(target).prev('.cur');
-				var next=$(target).next('.cur');
 				var parent=$(target).parent();
+				var prev=$(target).prevAll('.cur')
+				var next=$(target).nextAll('.cur');
 				if(prev.length===0&&next.length===0){
 					$(target).addClass('cur');
 					callback['hashTabShow'].call();
@@ -356,4 +356,30 @@
 		}
 	}
 	window.hashLoad=hashLoad;
-})(window);
+})(window,Zepto||jQuery);
+
+/**
+ * 封装prevAll&nextAll
+ */
+;(function($){
+	if(!$) return false;
+	var e = {
+	    nextAll: function(s) {
+	        var $els = $(), $el = this.next();
+	        while( $el.length ) {
+	            if(typeof s === 'undefined' || $el.is(s)) $els = $els.add($el);
+	            $el = $el.next();
+	        }
+	        return $els;
+	    },
+	    prevAll: function(s) {
+	        var $els = $(), $el = this.prev();
+	        while( $el.length ) {
+	            if(typeof s === 'undefined' || $el.is(s)) $els = $els.add($el);
+	            $el = $el.prev();
+	        }
+	        return $els;
+	    }
+	}
+	$.extend($.fn,e);
+})(Zepto);
