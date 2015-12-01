@@ -2,7 +2,7 @@ hashLoad
 =
 
 ## 介绍
-hashLoad是一个用于移动端的页面异步加载的zepto插件。
+hashLoad是一个用于移动端页面异步加载的zepto插件。
 通过使用location.hash实现页面内部的切换、页面的回退和前进操作。
 
 ## 引入
