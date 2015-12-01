@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>测试hashLoad</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="./src/css/reset.css" rel="stylesheet">
+    <link href="./src/css/hash_load.css" rel="stylesheet">
+</head>
+<body>
+    <!-- modal -->
+    <div class="hash-loading" id="hash-loading">
+        <div class="hash-loading-content">
+            <div class="spinner">
+                <div class="spinner-container container1">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                </div>
+                <div class="spinner-container container2">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                </div>
+                <div class="spinner-container container3">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        带有顶部内容
+    </p>
+    <div id="page" data-role="page-group">
+        <div class="hash-page" data-role="page">
+            <a href="./page/page_tab.html?page=1#page1">测试tab切换</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="./src/js/zepto.min.js"></script>
+    <script type="text/javascript" src="./src/js/touch.min.js"></script>
+    <script type="text/javascript" src="./src/js/hash_load.js"></script>
+    <script type="text/javascript">
+    $('#page').on('hashPageLoaded',function(){
+        console.log('执行load函数');
+    });
+    var page=new hashLoad({
+        target:'#page'
+    });
+    page.init();
+    </script>
+</body>

@@ -1,0 +1,35 @@
+<!-- 额外载入css -->
+<link href="./src/css/tab.css" rel="stylesheet">
+<ul class="tab-menu">
+    <li><a href="#page1">打开页面1</a></li>
+    <li><a href="#page2">打开页面2</a><li>
+    <li><a href="#page3">打开页面3</a></li>
+</ul>
+<div class="tab-content">
+    <div data-role="tab-group">
+        <div id="page1" class="hash-tab" data-role="tab">
+            <p>页面1</p>
+        </div>
+        <div id="page2" class="hash-tab" data-role="tab">
+            <p>页面2</p>
+            <p>数据内容</p>
+            <p>数据内容</p>
+            <p>数据内容</p>
+        </div>
+        <div id="page3" class="hash-tab" data-role="tab">
+            页面3
+        </div>
+    </div>
+</div>
+<!-- 注意路径以载入的路径为准 -->
+<p><a href="./page/page_back.html">打开后退测试页面</a></p>
+<p><a href="http://www.google.com" data-ajax="false">打开google页面</a></p>
+<script type="text/javascript">
+$('#page1').on('hashTabShow',function(){
+    console.log('同步加载，page1已经显示');
+});
+</script>
+<!-- 测试外部调用方法 -->
+<script type="text/javascript">
+$.get('./page/page_test.js');
+</script>
