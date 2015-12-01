@@ -1,0 +1,2 @@
+# hashLoad
+hashLoad是一个用于移动端的页面异步加载的zepto插件
