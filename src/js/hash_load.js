@@ -4,6 +4,7 @@
  * 创建：2015-12-1
  */
 ;(function(){
+	var timer=null;
 	/**
 	 * 获取hash参数
 	 * @param  {string} name 参数名称
@@ -199,6 +200,7 @@
 			 * @param  {Function} callback 回调函数
 			 */
 			'switch':function(target,callback){
+				clearTimeout(timer);
 				callback['hashTabBeforeShow'].call();
 				var parent=$(target).parent();
 				var prev=$(target).prevAll('.cur')
@@ -211,7 +213,7 @@
 				else if(prev.length>0){
 					parent.addClass('hash-tab-in');
 					$(target).addClass('active');
-					setTimeout(function(){
+					timer=setTimeout(function(){
 						parent.removeClass('hash-tab-in');
 						prev.removeClass('cur');
 						$(target).removeClass('active').addClass('cur');
@@ -222,7 +224,7 @@
 				else if(next.length>0){
 					parent.addClass('hash-tab-out');
 					$(target).addClass('active');
-					setTimeout(function(){
+					timer=setTimeout(function(){
 						parent.removeClass('hash-tab-out');
 						next.removeClass('cur');
 						$(target).removeClass('active').addClass('cur');
@@ -308,6 +310,7 @@
 			 * @param  {Function} callback 回调函数列表，执行对应的回调操作
 			 */
 			'switch':function(url,target,action,callback){
+				clearTimeout(timer);
 				var load_html='<div class="hash-page-load-con"><div class="spinner"><div class="spinner-container container1"><div class="circle1"></div><div class="circle2"></div><div class="circle3"></div><div class="circle4"></div></div><div class="spinner-container container2"><div class="circle1"></div><div class="circle2"></div><div class="circle3"></div><div class="circle4"></div></div><div class="spinner-container container3"><div class="circle1"></div><div class="circle2"></div><div class="circle3"></div><div class="circle4"></div></div></div></div>';
 				if($(target).find('.hash-page').length===1){
 					//生成切换数据
@@ -315,14 +318,14 @@
 						case 'forward':
 						$(target).append('<div class="hash-page hash-page-load" data-role="page">'+load_html+'</div>');
 						$(target).addClass('hash-page-in');
-						setTimeout(function(){
+						timer=setTimeout(function(){
 							$(target).removeClass('hash-page-in').find('.hash-page').eq(0).remove();
 						},1000);
 						break;
 						case 'back':
 						$(target).prepend('<div class="hash-page hash-page-load" data-role="page">'+load_html+'</div>');
 						$(target).addClass('hash-page-out');
-						setTimeout(function(){
+						timer=setTimeout(function(){
 							$(target).removeClass('hash-page-out').find('.hash-page').eq(1).remove();
 						},1000);
 						break;
