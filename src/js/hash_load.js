@@ -16,17 +16,6 @@
 	    return '';
 	}
 	/**
-	 * 获取url目标
-	 * @param  {string} url 目标url
-	 * @return {string}     目标ID，如#target或者null
-	 */
-	function getUrlTarget(url){
-		var reg=new RegExp(/^([\S]*)$/);
-		var r=url.match(reg);
-		if(r!=null) return '#'+r[1];
-	    return null;
-	}
-	/**
 	 * hashLoad主程序
 	 * @param  {object} option hashLoad设置参数
 	 */
