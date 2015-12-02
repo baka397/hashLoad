@@ -148,33 +148,46 @@ $('#page1').on('hashTabShow',function(){
 });
 ```
 
-## javascript加载
-在页面中定义的javascript会同步执行，在js文件中定义的javascript需要通过$.get引入。
+## javascript引入
 
+### 文件加载
+在页面中定义的javascript会同步执行，在js文件中定义的javascript(注意js文件位置应相对于load页面位置);
 ```
+<!-- 页面中引入js文件 -->
+<script type="text/javascript" src="./page/page_test.js"></script>
+```
+注意：使用jQuery载入将正常加载，zepto中引入时，将在页面加载完成后加载js文件（不管js文件声明的位置在哪里），区别见下：
+```
+<script type="text/javascript" src="test.js"></script>
+<!-- test.js内容
+	console.log(1);
+ -->
 <script type="text/javascript">
-$.get('./page/page_test.js');
+console.log(2);
 </script>
 ```
-
-由于异步引入，在加载完成后才会执行js文件中的内容，如下例：
-页面中监听
+在jQuery中为：
 ```
-$('#page1').on('hashTabShow',function(){
-    console.log('同步加载，page1已经显示');
+1
+2
+```
+在zepto中为：
+```
+2
+1
+```
+
+### 作用域
+为防止全局变量污染，请使用以下代码声明页面内部的js代码
+```
+page.runScript(function(){
+	//在这里写入js代码
 });
 ```
 
-文件中监听
+当当前页面卸载时，可以使用以下代码执行卸载前操作
 ```
-$('#page1').on('hashTabShow',function(){
-    console.log('异步加载，第二次点击page1才会显示');
+page.unScript(function(){
+	//在这里写入js代码
 });
-```
-
-当页面加载时，默认显示page1，然后再次点击page1时，控制台输出内容为：
-```
-同步加载，page1已经显示
-同步加载，page1已经显示
-异步加载，第二次点击page1才会显示
 ```

@@ -24,12 +24,4 @@
 <!-- 注意路径以载入的路径为准 -->
 <p><a href="./page/page_back.html">打开后退测试页面</a></p>
 <p><a href="http://www.google.com" data-ajax="false">打开google页面</a></p>
-<script type="text/javascript">
-$('#page1').on('hashTabShow',function(){
-    console.log('同步加载，page1已经显示');
-});
-</script>
-<!-- 测试外部调用方法 -->
-<script type="text/javascript">
-$.get('./page/page_test.js');
-</script>
+<script type="text/javascript" src="./page/page_test.js"></script>
