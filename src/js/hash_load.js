@@ -20,6 +20,7 @@
 		this.option=$.extend(this.option,option);
 		this.order=0;//页面顺序
 		this._prev_url='';//上次加载的页面地址
+		this._prev_tab='';//上次加载的tab名
 		this._timer={
 			_tab_timer:null,
 			_load_timer:null
@@ -47,7 +48,7 @@
 			all=$('<div></div>');
 			//建立一个工作区解析HTML内容，并让引入的script执行
 			all.get(0).innerHTML = html;
-			page = all.children();
+			page = all.find('[data-role="page"]').children();
 			return page;
 		},
 		_include:function(page,element){
@@ -127,6 +128,7 @@
 			url=r[1]||self._getHashParam(hash,'url');
 			tab=r[2]||'';
 			tab=tab.replace('#','');
+			if(url===self._prev_url&&tab===self._prev_tab) return false;
 			window.location.hash='url='+url+'&tab='+tab+'&load_type='+load_type+'&tab_type='+tab_type+'&order='+order+'&cache='+cache;
 		},
 		/**
@@ -180,6 +182,7 @@
 				type=0;
 				self._prev_url=url;
 			}
+			self._prev_tab=tab;
 			if(tab){
 				self.tab(type);
 			}else{
@@ -350,7 +353,7 @@
 					callback['hashPageLoaded'].call();
 					if($(target).find('.hash-page')===0) $(target).html('<div class="hash-page" data-role="page"></div>');
 					content=self._parse(data);
-					self._include(content,$(target).find('.hash-page-load'));
+					self._include(content,$(target).find('.hash-page'));
 					//数据渲染完成
 					callback['hashPageCreated'].call();
 					$('#hashload-loading').hide();

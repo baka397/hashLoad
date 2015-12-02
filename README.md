@@ -37,6 +37,12 @@ cache:false//页面缓存
 
 ### load载入
 ```
+<!-- 目标文件声明内容 -->
+<div class="hash-page" data-role="page">
+	<!-- 写入html、js、css内容 -->
+</div>
+```
+```
 <!-- 使用href地址跳转 -->
 <a href="./page/page_tab.html?page=1">跳转至page_tab.html</a>
 <a href="./page/page_tab.html?page=1#page1">跳转至page_tab.html并默认展开ID为page1的tab</a>

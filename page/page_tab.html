@@ -1,27 +1,44 @@
-<!-- 额外载入css -->
-<link href="./src/css/tab.css" rel="stylesheet">
-<ul class="tab-menu">
-    <li><a href="#page1">打开页面1</a></li>
-    <li><a href="#page2">打开页面2</a><li>
-    <li><a href="#page3">打开页面3</a></li>
-</ul>
-<div class="tab-content">
-    <div data-role="tab-group">
-        <div id="page1" class="hash-tab" data-role="tab">
-            <p>页面1</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>测试hashLoad</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="./src/css/reset.css" rel="stylesheet">
+    <link href="./src/css/hash_load.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="hash-page" data-role="page">
+        <!-- 额外载入css -->
+        <link href="./src/css/tab.css" rel="stylesheet">
+        <ul class="tab-menu">
+            <li><a href="#page1">打开页面1</a></li>
+            <li><a href="#page2">打开页面2</a><li>
+            <li><a href="#page3">打开页面3</a></li>
+        </ul>
+        <div class="tab-content">
+            <div data-role="tab-group">
+                <div id="page1" class="hash-tab" data-role="tab">
+                    <p>页面1</p>
+                </div>
+                <div id="page2" class="hash-tab" data-role="tab">
+                    <p>页面2</p>
+                    <p>数据内容</p>
+                    <p>数据内容</p>
+                    <p>数据内容</p>
+                </div>
+                <div id="page3" class="hash-tab" data-role="tab">
+                    页面3
+                </div>
+            </div>
         </div>
-        <div id="page2" class="hash-tab" data-role="tab">
-            <p>页面2</p>
-            <p>数据内容</p>
-            <p>数据内容</p>
-            <p>数据内容</p>
-        </div>
-        <div id="page3" class="hash-tab" data-role="tab">
-            页面3
-        </div>
+        <!-- 注意路径以载入的路径为准 -->
+        <p><a href="./page/page_back.html">打开后退测试页面</a></p>
+        <p><a href="http://www.google.com" data-ajax="false">打开google页面</a></p>
+        <script type="text/javascript" src="./page/page_test.js"></script>
     </div>
-</div>
-<!-- 注意路径以载入的路径为准 -->
-<p><a href="./page/page_back.html">打开后退测试页面</a></p>
-<p><a href="http://www.google.com" data-ajax="false">打开google页面</a></p>
-<script type="text/javascript" src="./page/page_test.js"></script>
+</body>
+</html>
