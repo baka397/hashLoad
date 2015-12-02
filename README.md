@@ -157,6 +157,13 @@ $('#page1').on('hashTabShow',function(){
 });
 ```
 
+### window事件监听
+`hashChangeInfo` hash变更
+```
+$(window).on('hashChangeInfo',function(data){
+    console.log(data._args);
+});
+```
 ## javascript引入
 
 ### 文件加载

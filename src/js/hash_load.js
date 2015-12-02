@@ -170,7 +170,12 @@
 			hash=window.location.hash,
 			url=self._getHashParam(hash,'url'),
 			type=1,
-			tab=self._getHashParam(hash,'tab');
+			tab=self._getHashParam(hash,'tab'),
+			load_type=self._getHashParam(hash,'load_type'),
+			tab_type=self._getHashParam(hash,'tab_type'),
+			order=self._getHashParam(hash,'order'),
+			cache=self._getHashParam(hash,'cache');
+			$(window).trigger('hashChangeInfo',[url,tab,load_type,tab_type,order,cache]);
 			if(url!==self._prev_url){
 				type=0;
 				self._prev_url=url;
@@ -317,7 +322,7 @@
 						$(target).trigger('hashPageShow');
 					},
 					'hashPageUnload':function(){//page加载事件
-						$(document).trigger('hashPageUnload');
+						$(window).trigger('hashPageUnload');
 					}
 				});
 			}else{
@@ -412,7 +417,7 @@
 		},
 		unScript:function(callback){
 			if(!callback) return false;
-			$(document).one('hashPageUnload',function(){
+			$(window).one('hashPageUnload',function(){
 				callback.call();
 			});
 		}

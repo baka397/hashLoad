@@ -52,6 +52,9 @@
     
     <script type="text/javascript" src="./src/js/hash_load.min.js"></script>
     <script type="text/javascript">
+    $(window).on('hashChangeInfo',function(data){
+        console.log(data._args);
+    });
     var page=new hashLoad({
         target:'#page'
     });
