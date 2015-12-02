@@ -32,7 +32,10 @@ target:null,//默认加载页面的dom对象
 cache:false//页面缓存
 ```
 
-## 页面跳转
+## 页面切换
+页面切换可以采用两种方式（load或tab），load将ajax异步加载页面，tab将载入页面中的已有页面
+
+### load载入
 ```
 <!-- 使用href地址跳转 -->
 <a href="./page/page_tab.html?page=1">跳转至page_tab.html</a>
@@ -46,7 +49,33 @@ cache:false//页面缓存
 ```
 通过在a标签添加`data-hash-load`属性定义load的加载方法名（默认为配置项）。添加`data-hash-cache`(true/false，默认为false)开启缓存。
 
-### load方法扩展
+### tab切换
+```
+<!-- 声明tab集合 -->
+<div data-role="tab-group">
+    <div id="page1" class="hash-tab" data-role="tab">
+        <p>页面1</p>
+    </div>
+    <div id="page2" class="hash-tab" data-role="tab">
+        <p>页面2</p>
+        <p>数据内容</p>
+        <p>数据内容</p>
+        <p>数据内容</p>
+    </div>
+    <div id="page3" class="hash-tab" data-role="tab">
+        页面3
+    </div>
+</div>
+<!-- 使用href 跳转 -->
+<a href="#page1">展开ID为page1的tab</a>
+```
+通过在a标签添加`data-hash-tab`属性定义tab的切换方法名。
+
+
+## 页面切换扩展
+页面的切换方式可以通过`updateFunc(类型,扩展对象)`方法更新或扩展。
+
+### load扩展
 ```
 /**
  * @param  {string}   url      加载地址
@@ -72,30 +101,9 @@ page.updateFunc('load',{
 	}
 });
 ```
+注：如果是动画效果，需要采用定时器时，可以调用this._timer._load_timer方法赋值，当定时器完成后，应重置为null，可参考_load_func->switch方法
 
-## 页面内tab切换
-```
-<!-- 声明tab集合 -->
-<div data-role="tab-group">
-    <div id="page1" class="hash-tab" data-role="tab">
-        <p>页面1</p>
-    </div>
-    <div id="page2" class="hash-tab" data-role="tab">
-        <p>页面2</p>
-        <p>数据内容</p>
-        <p>数据内容</p>
-        <p>数据内容</p>
-    </div>
-    <div id="page3" class="hash-tab" data-role="tab">
-        页面3
-    </div>
-</div>
-<!-- 使用href 跳转 -->
-<a href="#page1">展开ID为page1的tab</a>
-```
-通过在a标签添加`data-hash-tab`属性定义tab的切换方法名。
-
-### tab方法扩展
+### tab扩展
 ```
 /**
  * @param  {string}   target   目标ID
@@ -112,6 +120,7 @@ page.updateFunc('tab',{
 	}
 });
 ```
+注：如果是动画效果，需要采用定时器时，可以调用this._timer._tab_timer方法赋值，当定时器完成后，应重置为null，可参考_tab_func->switch方法
 
 ## js执行页面跳转
 ```
