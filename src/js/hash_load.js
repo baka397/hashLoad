@@ -382,6 +382,7 @@
 						self._timer._load_timer=setTimeout(function(){
 							$(target).removeClass('hash-page-in').find('.hash-page').eq(0).remove();
 							self._timer._load_timer=null;
+							switchLoad();
 						},1000);
 						break;
 						case 'back':
@@ -390,6 +391,7 @@
 						self._timer._load_timer=setTimeout(function(){
 							$(target).removeClass('hash-page-out').find('.hash-page').eq(1).remove();
 							self._timer._load_timer=null;
+							switchLoad();
 						},1000);
 						break;
 					}
@@ -397,18 +399,20 @@
 					//直接载入数据
 					$(target).append('<div class="hash-page hash-page-load" data-role="page">'+load_html+'</div>');
 				}
-				$.get(url,function(data){
-					var content;
-					//数据加载完成
-					callback['hashPageLoaded'].call();
-					content=self._parse(data);
-					self._include(content,$(target).find('.hash-page-load'));
-					//数据渲染完成
-					callback['hashPageCreated'].call();
-					$(target).find('.hash-page-load').removeClass('hash-page-load');
-					//数据展示完成
-					callback['hashPageShow'].call();
-				});
+				function switchLoad(){
+					$.get(url,function(data){
+						var content;
+						//数据加载完成
+						callback['hashPageLoaded'].call();
+						content=self._parse(data);
+						self._include(content,$(target).find('.hash-page-load'));
+						//数据渲染完成
+						callback['hashPageCreated'].call();
+						$(target).find('.hash-page-load').removeClass('hash-page-load');
+						//数据展示完成
+						callback['hashPageShow'].call();
+					});
+				}
 			}
 		},
 		/**
