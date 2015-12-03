@@ -1,0 +1,47 @@
+@charset "utf-8";
+.article{
+	padding: 10px;
+	background: #FFF;
+	color: #333;
+	font-size: 12px;
+	line-height: 1.6em;
+}
+.article h1{
+	margin: 0 0 20px;
+	color: #333;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+}
+.article h2{
+	margin: 10px 0;
+	font-size: 1.2em;
+}
+.article p{
+	margin: 0 0 10px;
+}
+.article img{
+	max-width: 100%;
+	height: auto;
+}
+.article blockquote{
+	margin: 10px 0;
+	padding: 10px;
+	background: #EFEFEF;
+}
+.article .text-remarks{
+	color: #999;
+}
+.article strong{
+	font-weight: bold;
+}
+
+.tool{
+	font-size: 12px;
+	margin: 10px 0;
+}
+.tool a{
+	display: inline-block;
+	margin: 0 10px;
+	color: #333;
+}

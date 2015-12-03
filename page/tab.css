@@ -1,0 +1,25 @@
+@charset "utf-8";
+.tab-menu{
+	overflow: hidden;
+}
+.tab-menu li{
+	float: left;
+	width: 33%;
+	text-align: center;
+	border-bottom: 2px solid #CCC;
+}
+.tab-menu li a{
+	display: block;
+	padding: 10px 0;
+}
+.tab-menu li.cur{
+	width: 34%;
+	border-color: transparent transparent #08E transparent;
+}
+.tab-content{
+	overflow: hidden;
+}
+.tab-content .hash-tab{
+	padding: 10px;
+	background: #FFF;
+}

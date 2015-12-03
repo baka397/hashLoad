@@ -1,0 +1,112 @@
+@charset "utf-8";
+/**
+ * yahoo reset css
+ */
+body{
+	-webkit-user-select:none;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre, 
+form,fieldset,input,textarea,p,blockquote,th,td { 
+    padding: 0; 
+    margin: 0; 
+}
+input,textarea{
+	outline: none;
+}
+table { 
+    border-collapse: collapse;
+    border-spacing: 0; 
+} 
+fieldset,img { 
+    border: 0; 
+} 
+address,caption,cite,code,dfn,em,strong,th,var { 
+    font-weight: normal; 
+    font-style: normal; 
+} 
+ol,ul { 
+    list-style: none; 
+} 
+caption,th { 
+    text-align: left; 
+} 
+h1,h2,h3,h4,h5,h6 { 
+    font-weight: normal; 
+    font-size: 100%; 
+}
+abbr,acronym { 
+    border: 0; 
+}
+*{
+	-webkit-tap-highlight-color:rgba(255,255,255,0);
+}
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+select,
+button {
+-webkit-appearance: none;
+}
+
+::-webkit-input-placeholder{
+	color: #CCC;
+}
+
+a{
+    color: #08E;
+    text-decoration: none;
+}
+
+/**
+ * 框架内容
+ */
+html,body{
+	height: 100%;
+	background: #EFEFEF;
+	font-size: 14px;
+}
+.header{
+	position: relative;
+	padding: 10px;
+	background: #333;
+	color: #FFF;
+	text-align: center;
+	overflow: hidden;
+}
+.header a{
+	display: none;
+	position: absolute;
+	color: #FFF;
+}
+.header a:first-child{
+	left: 10px;
+}
+.header a:last-child{
+	right: 10px;
+}
+.content{
+	min-height: 100%;
+	margin:20px 10px;
+	overflow: hidden;
+}
+.page-list{
+	list-style: decimal inside;
+}
+.page-list li{
+	margin: 10px 0;
+	line-height: 1.2em;
+}
+.page-list li em{
+	padding: 0 0 0 10px;
+	color: #666;
+	font-size: 12px;
+}
+
+/**
+ * 页面结构
+ */
+h1{
+	line-height: 2.4em;
+	font-size: 16px;
+	font-weight: bold;
+}
