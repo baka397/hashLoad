@@ -11,34 +11,66 @@
     <link href="./src/css/hash_load.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="hash-page" data-role="page">
-        <!-- 额外载入css -->
-        <link href="./src/css/tab.css" rel="stylesheet">
-        <ul class="tab-menu">
-            <li><a href="#page1">打开页面1</a></li>
-            <li><a href="#page2">打开页面2</a><li>
-            <li><a href="#page3">打开页面3</a></li>
-        </ul>
-        <div class="tab-content">
-            <div data-role="tab-group">
-                <div id="page1" class="hash-tab" data-role="tab">
-                    <p>页面1</p>
+    <!-- modal -->
+    <div class="hash-loading" id="hash-loading">
+        <div class="hash-loading-content">
+            <div class="spinner">
+                <div class="spinner-container container1">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
                 </div>
-                <div id="page2" class="hash-tab" data-role="tab">
-                    <p>页面2</p>
-                    <p>数据内容</p>
-                    <p>数据内容</p>
-                    <p>数据内容</p>
+                <div class="spinner-container container2">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
                 </div>
-                <div id="page3" class="hash-tab" data-role="tab">
-                    页面3
+                <div class="spinner-container container3">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
                 </div>
             </div>
         </div>
-        <!-- 注意路径以载入的路径为准 -->
-        <p><a href="./page/page_back.html">打开后退测试页面</a></p>
-        <p><a href="http://www.google.com" data-ajax="false">打开google页面</a></p>
-        <script type="text/javascript" src="./page/page_test.js"></script>
     </div>
+    <div class="header"><a href="" id="location-back">&lt;返回</a>hashLoad<a href="demo.html" data-ajax="false">首页</a></div>
+    <div class="content">
+        <div id="page">
+            <div class="hash-page" data-role="page">
+                <link href="./page/tab.css" rel="stylesheet">
+                <!-- 额外载入css -->
+                <ul class="tab-menu">
+                    <li><a href="#page1">热点</a></li>
+                    <li><a href="#page2">快讯</a></li>
+                    <li><a href="#page3">推荐站点</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div data-role="tab-group">
+                        <div id="page1" class="hash-tab" data-role="tab">
+                            <a href="./page/page_article.html">十年过去了，新浪博客计划煮一锅“大杂烩”</a>
+                        </div>
+                        <div id="page2" class="hash-tab" data-role="tab">
+                            中石油、中石化这类大块头央企，关于其经营效益方面的消息，公众有时候会读不懂。<a href="http://news.sina.com.cn/zl/zatan/blog/2015-12-03/09165042/1236357250/49b150820102vvv8.shtml" data-ajax="false">[详细]</a>
+                        </div>
+                        <div id="page3" class="hash-tab" data-role="tab">
+                            <p><a href="http://www.google.com" data-ajax="false">打开google页面</a></p>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript" src="./page/tab.js"></script>
+            </div>
+        </div>
+    </div>
+    <!--
+    <script type="text/javascript" src="./src/js/jquery-2.1.1.min.js"></script>
+    -->
+    <script type="text/javascript" src="./src/js/zepto.min.js"></script>
+    <script type="text/javascript" src="./src/js/touch.min.js"></script>
+    
+    <script type="text/javascript" src="./src/js/hash_load.min.js"></script>
+    <script type="text/javascript" src="./page/demo.js"></script>
 </body>
 </html>

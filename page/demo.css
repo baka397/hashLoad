@@ -56,3 +56,57 @@ a{
     color: #08E;
     text-decoration: none;
 }
+
+/**
+ * 框架内容
+ */
+html,body{
+	height: 100%;
+	background: #EFEFEF;
+	font-size: 14px;
+}
+.header{
+	position: relative;
+	padding: 10px;
+	background: #333;
+	color: #FFF;
+	text-align: center;
+	overflow: hidden;
+}
+.header a{
+	display: none;
+	position: absolute;
+	color: #FFF;
+}
+.header a:first-child{
+	left: 10px;
+}
+.header a:last-child{
+	right: 10px;
+}
+.content{
+	min-height: 100%;
+	margin:20px 10px;
+	overflow: hidden;
+}
+.page-list{
+	list-style: decimal inside;
+}
+.page-list li{
+	margin: 10px 0;
+	line-height: 1.2em;
+}
+.page-list li em{
+	padding: 0 0 0 10px;
+	color: #666;
+	font-size: 12px;
+}
+
+/**
+ * 页面结构
+ */
+h1{
+	line-height: 2.4em;
+	font-size: 16px;
+	font-weight: bold;
+}

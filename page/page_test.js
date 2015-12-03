@@ -1,9 +1,0 @@
-//为了防止全局变量污染，使用runScript运行函数
-page.runScript(function(){
-	console.log('加载文件完成');
-});
-//当页面卸载时，执行的函数
-//如在页面中附加一个事件处理器(live方法)：$(document).on('click','a',function(){alert(1)})，请在此清空绑定事件
-page.unScript(function(){
-	console.log('卸载页面完成');
-});
