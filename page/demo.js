@@ -15,7 +15,3 @@ $('#location-back').tap(function(){
 	window.history.back();
 	return false;
 });
-
-document.addEventListener('touchmove',function(event){
-	event.preventDefault();
-}, false);
