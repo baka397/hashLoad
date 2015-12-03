@@ -90,9 +90,11 @@ html,body{
 	right: 10px;
 }
 .content{
-	position: relative;
-	margin: 40px 10px 0;
-	min-height: 100%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 40px;
+	bottom: 0;
 	overflow-x: hidden;
 }
 .page-list{
