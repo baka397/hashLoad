@@ -66,8 +66,13 @@ html,body{
 	font-size: 14px;
 }
 .header{
-	position: relative;
-	padding: 10px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 10px;
+	height: 40px;
+	line-height: 40px;
 	background: #333;
 	color: #FFF;
 	text-align: center;
@@ -85,9 +90,12 @@ html,body{
 	right: 10px;
 }
 .content{
-	min-height: 100%;
-	margin:20px 10px;
-	overflow: hidden;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 40px;
+	bottom: 0;
+	overflow-x: hidden;
 }
 .page-list{
 	list-style: decimal inside;
@@ -100,6 +108,9 @@ html,body{
 	padding: 0 0 0 10px;
 	color: #666;
 	font-size: 12px;
+}
+.hash-page{
+	padding: 0 10px;
 }
 
 /**

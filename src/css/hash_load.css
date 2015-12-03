@@ -101,6 +101,7 @@
  */
 .hash-page-out,.hash-page-in{
 	position: relative;
+	height: 100%;
 	min-height: 150px;
 }
 .hash-page-out{
