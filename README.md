@@ -6,9 +6,9 @@ hashLoad是一个用于移动端页面异步加载的zepto插件。
 通过使用location.hash实现页面内部的切换、页面的回退和前进操作。
 
 ## 手机访问
-扫码
-![](./example/qrcode.png)
-[http://baka397.github.io/hashLoad/](http://baka397.github.io/hashLoad/)
+扫码  
+![](./example/qrcode.png)  
+[http://baka397.github.io/hashLoad/](http://baka397.github.io/hashLoad/)  
 
 ## 引入
 ```
@@ -147,10 +147,10 @@ page.location('index.html');
 ## 监听回调事件
 可以通过$(目标DOM).on('事件名',function(){})监听事件
 ### load事件监听
-`pageBeforeLoaded` load前
-`hashPageLoaded` load完成后
-`hashPageCreated` 页面创建后
-`hashPageShow` 页面展示后
+`pageBeforeLoaded` load前  
+`hashPageLoaded` load完成后  
+`hashPageCreated` 页面创建后  
+`hashPageShow` 页面展示后  
 
 ```
 $('#page').on('hashPageLoaded',function(){
@@ -159,8 +159,8 @@ $('#page').on('hashPageLoaded',function(){
 ```
 
 ### tab事件监听
-`hashTabBeforeShow` tab显示前
-`hashTabShow` tab显示后
+`hashTabBeforeShow` tab显示前  
+`hashTabShow` tab显示后  
 
 ```
 $('#page1').on('hashTabShow',function(){
