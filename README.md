@@ -5,6 +5,11 @@ hashLoad
 hashLoad是一个用于移动端页面异步加载的zepto插件。
 通过使用location.hash实现页面内部的切换、页面的回退和前进操作。
 
+## 手机访问
+扫码
+![](./example/qrcode.png)
+[http://baka397.github.io/hashLoad/](http://baka397.github.io/hashLoad/)
+
 ## 引入
 ```
 <!-- hashLoad 样式 -->
