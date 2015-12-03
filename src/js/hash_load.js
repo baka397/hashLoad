@@ -128,7 +128,7 @@
 			url=r[1]||self._getHashParam(hash,'url');
 			tab=r[2]||'';
 			tab=tab.replace('#','');
-			if(url===self._prev_url&&tab===self._prev_tab) return false;
+			if((url===self._prev_url&&tab===self._prev_tab)||self._timer._tab_timer||self._timer._load_timer) return false;
 			window.location.hash='url='+url+'&tab='+tab+'&load_type='+load_type+'&tab_type='+tab_type+'&order='+order+'&cache='+cache;
 		},
 		/**
@@ -177,12 +177,12 @@
 			tab_type=self._getHashParam(hash,'tab_type'),
 			order=self._getHashParam(hash,'order'),
 			cache=self._getHashParam(hash,'cache');
+			self._prev_tab=tab;
 			$(window).trigger('hashChangeInfo',[url,tab,load_type,tab_type,order,cache]);
 			if(url!==self._prev_url){
 				type=0;
 				self._prev_url=url;
 			}
-			self._prev_tab=tab;
 			if(tab){
 				self.tab(type);
 			}else{
