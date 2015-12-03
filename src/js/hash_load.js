@@ -270,7 +270,7 @@
 						$(target).removeClass('active').addClass('cur');
 						callback['hashTabShow'].call();
 						self._timer._tab_timer=null;
-					},1000);
+					},500);
 				}
 				//从左划出
 				else if(next.length>0){
@@ -283,7 +283,7 @@
 						$(target).removeClass('active').addClass('cur');
 						callback['hashTabShow'].call();
 						self._timer._tab_timer=null;
-					},1000);
+					},500);
 				}
 			}
 		},
@@ -356,7 +356,7 @@
 					self._include(content,$(target).find('.hash-page'));
 					//数据渲染完成
 					callback['hashPageCreated'].call();
-					$('#hashload-loading').hide();
+					$('#hash-loading').hide();
 					//数据展示完成
 					callback['hashPageShow'].call();
 				});
@@ -383,7 +383,7 @@
 							$(target).removeClass('hash-page-in').find('.hash-page').eq(0).remove();
 							self._timer._load_timer=null;
 							switchLoad();
-						},1000);
+						},500);
 						break;
 						case 'back':
 						$(target).prepend('<div class="hash-page hash-page-load" data-role="page">'+load_html+'</div>');
@@ -392,7 +392,7 @@
 							$(target).removeClass('hash-page-out').find('.hash-page').eq(1).remove();
 							self._timer._load_timer=null;
 							switchLoad();
-						},1000);
+						},500);
 						break;
 					}
 				}else{
