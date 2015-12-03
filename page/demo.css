@@ -96,7 +96,6 @@ html,body{
 	top: 40px;
 	bottom: 0;
 	overflow-y:auto;
-	-webkit-overflow-scrolling:touch;
 }
 .page-list{
 	list-style: decimal inside;
