@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hashload by baka397</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Hashload</h1>
+      <h2 class="project-tagline">hashLoad是一个用于移动端页面异步加载的zepto插件</h2>
+      <a href="https://github.com/baka397/hashLoad" class="btn">View on GitHub</a>
+      <a href="https://github.com/baka397/hashLoad/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/baka397/hashLoad/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="hashload" class="anchor" href="#hashload" aria-hidden="true"><span class="octicon octicon-link"></span></a>hashLoad</h1>
+
+<h2>
+<a id="介绍" class="anchor" href="#%E4%BB%8B%E7%BB%8D" aria-hidden="true"><span class="octicon octicon-link"></span></a>介绍</h2>
+
+<p>hashLoad是一个用于移动端页面异步加载的zepto插件。
+通过使用location.hash实现页面内部的切换、页面的回退和前进操作。</p>
+
+<h2>
+<a id="引入" class="anchor" href="#%E5%BC%95%E5%85%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>引入</h2>
+
+<pre><code>&lt;!-- hashLoad 样式 --&gt;
+&lt;link href="./src/css/hash_load.css" rel="stylesheet"&gt;
+&lt;!-- zepto 1.1.6 &amp;&amp; touch,没有touch时将监听click事件 --&gt;
+&lt;script type="text/javascript" src="./src/js/zepto.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="./src/js/touch.min.js"&gt;&lt;/script&gt;
+&lt;!-- hashLoad 插件程序 --&gt;
+&lt;script type="text/javascript" src="./src/js/hash_load.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h2>
+<a id="执行" class="anchor" href="#%E6%89%A7%E8%A1%8C" aria-hidden="true"><span class="octicon octicon-link"></span></a>执行</h2>
+
+<pre><code>var page=new hashLoad({
+    target:'#page'
+});
+page.init();
+</code></pre>
+
+<h2>
+<a id="配置" class="anchor" href="#%E9%85%8D%E7%BD%AE" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置</h2>
+
+<pre><code>load:'switch',//默认加载类型
+tab:'switch',//默认tab切换类型
+target:null,//默认加载页面的dom对象
+cache:false//页面缓存
+</code></pre>
+
+<h2>
+<a id="页面切换" class="anchor" href="#%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2" aria-hidden="true"><span class="octicon octicon-link"></span></a>页面切换</h2>
+
+<p>页面切换可以采用两种方式（load或tab），load将ajax异步加载页面，tab将载入页面中的已有页面</p>
+
+<h3>
+<a id="load载入" class="anchor" href="#load%E8%BD%BD%E5%85%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>load载入</h3>
+
+<pre><code>&lt;!-- 目标文件声明内容 --&gt;
+&lt;div class="hash-page" data-role="page"&gt;
+    &lt;!-- 写入html、js、css内容 --&gt;
+&lt;/div&gt;
+</code></pre>
+
+<pre><code>&lt;!-- 使用href地址跳转 --&gt;
+&lt;a href="./page/page_tab.html?page=1"&gt;跳转至page_tab.html&lt;/a&gt;
+&lt;a href="./page/page_tab.html?page=1#page1"&gt;跳转至page_tab.html并默认展开ID为page1的tab&lt;/a&gt;
+&lt;!-- 关闭ajax加载 --&gt;
+&lt;a href="http://www.google.com" data-ajax="false"&gt;跳转至google&lt;/a&gt;
+&lt;!-- 默认不会被执行的链接 --&gt;
+&lt;a href="javascript:alert(1);"&gt;javascript方法&lt;/a&gt;
+&lt;a href="#"&gt;无意义占位符&lt;/a&gt;
+&lt;a href=""&gt;空链接&lt;/a&gt;
+</code></pre>
+
+<p>通过在a标签添加<code>data-hash-load</code>属性定义load的加载方法名（默认为配置项）。添加<code>data-hash-cache</code>(true/false，默认为false)开启缓存。</p>
+
+<h3>
+<a id="tab切换" class="anchor" href="#tab%E5%88%87%E6%8D%A2" aria-hidden="true"><span class="octicon octicon-link"></span></a>tab切换</h3>
+
+<pre><code>&lt;!-- 声明tab集合 --&gt;
+&lt;div data-role="tab-group"&gt;
+    &lt;div id="page1" class="hash-tab" data-role="tab"&gt;
+        &lt;p&gt;页面1&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id="page2" class="hash-tab" data-role="tab"&gt;
+        &lt;p&gt;页面2&lt;/p&gt;
+        &lt;p&gt;数据内容&lt;/p&gt;
+        &lt;p&gt;数据内容&lt;/p&gt;
+        &lt;p&gt;数据内容&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id="page3" class="hash-tab" data-role="tab"&gt;
+        页面3
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- 使用href 跳转 --&gt;
+&lt;a href="#page1"&gt;展开ID为page1的tab&lt;/a&gt;
+</code></pre>
+
+<p>通过在a标签添加<code>data-hash-tab</code>属性定义tab的切换方法名。</p>
+
+<h2>
+<a id="页面切换扩展" class="anchor" href="#%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2%E6%89%A9%E5%B1%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>页面切换扩展</h2>
+
+<p>页面的切换方式可以通过<code>updateFunc(类型,扩展对象)</code>方法更新或扩展。</p>
+
+<h3>
+<a id="load扩展" class="anchor" href="#load%E6%89%A9%E5%B1%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>load扩展</h3>
+
+<pre><code>/**
+ * @param  {string}   url      加载地址
+ * @param  {object}   target   加载目标
+ * @param  {string}   action   forward/back，该动作是前进还是后退
+ * @param  {Function} callback 回调函数列表，执行对应的回调操作
+ */
+page.updateFunc('load',{
+    'page':function(url,target,action,callback){
+        $('#hash-loading').show();
+        var self=this;
+        $.get(url,function(data){
+            //数据加载完成
+            callback['hashPageLoaded'].call();
+            if($(target).find('.hash-page')===0) $(target).html('&lt;div class="hash-page" data-role="page"&gt;&lt;/div&gt;');
+            $(target).find('.hash-page').html(data);
+            //数据渲染完成
+            callback['hashPageCreated'].call();
+            $('#hashload-loading').hide();
+            //数据展示完成
+            callback['hashPageShow'].call();
+        });
+    }
+});
+</code></pre>
+
+<p>注：如果是动画效果，需要采用定时器时，可以调用this._timer._load_timer方法赋值，当定时器完成后，应重置为null，可参考_load_func-&gt;switch方法</p>
+
+<h3>
+<a id="tab扩展" class="anchor" href="#tab%E6%89%A9%E5%B1%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>tab扩展</h3>
+
+<pre><code>/**
+ * @param  {string}   target   目标ID
+ * @param  {Function} callback 回调函数
+ */
+page.updateFunc('tab',{
+    'display':function(target,callback){
+        //tab展示前
+        callback['hashTabBeforeShow'].call();
+        $(target).siblings('[data-role="page"]').removeClass('cur');
+        $(target).addClass('cur');
+        //tab展示完成
+        callback['hashTabShow'].call();
+    }
+});
+</code></pre>
+
+<p>注：如果是动画效果，需要采用定时器时，可以调用this._timer._tab_timer方法赋值，当定时器完成后，应重置为null，可参考_tab_func-&gt;switch方法</p>
+
+<h2>
+<a id="js执行页面跳转" class="anchor" href="#js%E6%89%A7%E8%A1%8C%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>js执行页面跳转</h2>
+
+<pre><code>/**
+ * @param  {string} url       链接地址
+ * @param  {string} load_type load执行函数
+ * @param  {string} tab_type  tab执行函数
+ * @param  {boolen} cache     是否启用缓存
+ */
+page.location('index.html');
+</code></pre>
+
+<h2>
+<a id="监听回调事件" class="anchor" href="#%E7%9B%91%E5%90%AC%E5%9B%9E%E8%B0%83%E4%BA%8B%E4%BB%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>监听回调事件</h2>
+
+<p>可以通过$(目标DOM).on('事件名',function(){})监听事件</p>
+
+<h3>
+<a id="load事件监听" class="anchor" href="#load%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>load事件监听</h3>
+
+<p><code>pageBeforeLoaded</code> load前
+<code>hashPageLoaded</code> load完成后
+<code>hashPageCreated</code> 页面创建后
+<code>hashPageShow</code> 页面展示后</p>
+
+<pre><code>$('#page').on('hashPageLoaded',function(){
+    console.log('执行load函数');
+});
+</code></pre>
+
+<h3>
+<a id="tab事件监听" class="anchor" href="#tab%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>tab事件监听</h3>
+
+<p><code>hashTabBeforeShow</code> tab显示前
+<code>hashTabShow</code> tab显示后</p>
+
+<pre><code>$('#page1').on('hashTabShow',function(){
+    console.log('tab显示后');
+});
+</code></pre>
+
+<h3>
+<a id="window事件监听" class="anchor" href="#window%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>window事件监听</h3>
+
+<p><code>hashChangeInfo</code> hash变更</p>
+
+<pre><code>$(window).on('hashChangeInfo',function(data){
+    console.log(data._args);
+});
+</code></pre>
+
+<h2>
+<a id="javascript引入" class="anchor" href="#javascript%E5%BC%95%E5%85%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>javascript引入</h2>
+
+<h3>
+<a id="文件加载" class="anchor" href="#%E6%96%87%E4%BB%B6%E5%8A%A0%E8%BD%BD" aria-hidden="true"><span class="octicon octicon-link"></span></a>文件加载</h3>
+
+<p>在页面中定义的javascript会同步执行，在js文件中定义的javascript(注意js文件位置应相对于load页面位置);</p>
+
+<pre><code>&lt;!-- 页面中引入js文件 --&gt;
+&lt;script type="text/javascript" src="./page/page_test.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>注意：使用jQuery载入将正常加载，zepto中引入时，将在页面加载完成后加载js文件（不管js文件声明的位置在哪里），区别见下：</p>
+
+<pre><code>&lt;script type="text/javascript" src="test.js"&gt;&lt;/script&gt;
+&lt;!-- test.js内容
+    console.log(1);
+ --&gt;
+&lt;script type="text/javascript"&gt;
+console.log(2);
+&lt;/script&gt;
+</code></pre>
+
+<p>在jQuery中为：</p>
+
+<pre><code>1
+2
+</code></pre>
+
+<p>在zepto中为：</p>
+
+<pre><code>2
+1
+</code></pre>
+
+<h3>
+<a id="作用域" class="anchor" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F" aria-hidden="true"><span class="octicon octicon-link"></span></a>作用域</h3>
+
+<p>为防止全局变量污染，请使用以下代码声明页面内部的js代码</p>
+
+<pre><code>page.runScript(function(){
+    //在这里写入js代码
+});
+</code></pre>
+
+<p>当当前页面卸载时，可以使用以下代码执行卸载前操作</p>
+
+<pre><code>page.unScript(function(){
+    //在这里写入js代码
+});
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/baka397/hashLoad">Hashload</a> is maintained by <a href="https://github.com/baka397">baka397</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
