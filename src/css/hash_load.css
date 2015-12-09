@@ -20,6 +20,7 @@
 	z-index: 999;
 	width: 100%;
 	height: 100%;
+	background: rgba(255,255,255,.7);
 }
 
 .hash-loading .hash-loading-content{
@@ -106,14 +107,14 @@
 .hash-page-out{
 	-webkit-transform: translate3d(100%,0,0);
 	transform: translate3d(100%,0,0);
-	-webkit-animation: hash-out 0.5s;
-	animation: hash-out 0.5s;
+	-webkit-animation: hash-out 1s;
+	animation: hash-out 1s;
 }
 .hash-page-in{
 	-webkit-transform: translate3d(-100%,0,0);
 	transform: translate3d(-100%,0,0);
-	-webkit-animation: hash-in 0.5s;
-	animation: hash-in 0.5s;
+	-webkit-animation: hash-in 1s;
+	animation: hash-in 1s;
 }
 .hash-page-out > .hash-page:first-child,.hash-page-in > .hash-page:first-child,.hash-page-in > .hash-page:last-child{
 	position: absolute;
@@ -164,14 +165,14 @@
 .hash-tab-out{
 	-webkit-transform: translate3d(100%,0,0);
 	transform: translate3d(100%,0,0);
-	-webkit-animation: hash-out 0.5s;
-	animation: hash-out 0.5s;
+	-webkit-animation: hash-out 1s;
+	animation: hash-out 1s;
 }
 .hash-tab-in{
 	-webkit-transform: translate3d(-100%,0,0);
 	transform: translate3d(-100%,0,0);
-	-webkit-animation: hash-in 0.5s;
-	animation: hash-in 0.5s;
+	-webkit-animation: hash-in 1s;
+	animation: hash-in 1s;
 }
 .hash-tab-out > .hash-tab.active{
 	transform: translate3d(-100%,0,0);

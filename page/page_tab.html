@@ -7,8 +7,8 @@
     <title>测试hashLoad</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link href="/hashLoad/page/demo.css" rel="stylesheet">
-    <link href="/hashLoad/src/css/hash_load.min.css" rel="stylesheet">
+    <link href="./src/css/reset.css" rel="stylesheet">
+    <link href="./src/css/hash_load.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- modal -->
@@ -36,11 +36,11 @@
             </div>
         </div>
     </div>
-    <div class="header"><a href="" id="location-back">&lt;返回</a>hashLoad<a href="/hashLoad/" data-ajax="false">首页</a></div>
+    <div class="header"><a href="" id="location-back">&lt;返回</a>hashLoad<a href="demo.html" data-ajax="false">首页</a></div>
     <div class="content">
         <div id="page">
             <div class="hash-page" data-role="page">
-                <link href="/hashLoad/page/tab.css" rel="stylesheet">
+                <link href="./page/tab.css" rel="stylesheet">
                 <!-- 额外载入css -->
                 <ul class="tab-menu">
                     <li><a href="#page1">热点</a></li>
@@ -50,7 +50,7 @@
                 <div class="tab-content">
                     <div data-role="tab-group">
                         <div id="page1" class="hash-tab" data-role="tab">
-                            <a href="./page/page_article.html">十年过去了，新浪博客计划煮一锅“大杂烩”</a>
+                            <a href="/page/page_article.html">十年过去了，新浪博客计划煮一锅“大杂烩”</a>
                         </div>
                         <div id="page2" class="hash-tab" data-role="tab">
                             中石油、中石化这类大块头央企，关于其经营效益方面的消息，公众有时候会读不懂。<a href="http://news.sina.com.cn/zl/zatan/blog/2015-12-03/09165042/1236357250/49b150820102vvv8.shtml" data-ajax="false">[详细]</a>
@@ -60,17 +60,14 @@
                         </div>
                     </div>
                 </div>
-                <script type="text/javascript" src="/hashLoad/page/tab.js"></script>
+                <script type="text/javascript" src="/page/tab.js"></script>
             </div>
         </div>
     </div>
-    <!--
-    <script type="text/javascript" src="/hashLoad/src/js/jquery-2.1.1.min.js"></script>
-    -->
-    <script type="text/javascript" src="/hashLoad/src/js/zepto.min.js"></script>
-    <script type="text/javascript" src="/hashLoad/src/js/touch.min.js"></script>
+    <script type="text/javascript" src="/hashLoad/src/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/hashLoad/src/js/jquery.finger.min.js"></script>
     
-    <script type="text/javascript" src="/hashLoad/src/js/hash_load.js"></script>
-    <script type="text/javascript" src="/hashLoad/page/demo.js"></script>
+    <script type="text/javascript" src="/src/js/hash_load.min.js"></script>
+    <script type="text/javascript" src="/page/demo.js"></script>
 </body>
 </html>

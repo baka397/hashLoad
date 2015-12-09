@@ -2,13 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <title>测试hashLoad</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link href="/hashLoad/page/demo.css" rel="stylesheet">
-    <link href="/hashLoad/src/css/hash_load.min.css" rel="stylesheet">
+    <link href="./page/demo.css" rel="stylesheet">
+    <link href="./src/css/hash_load.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- modal -->
@@ -36,25 +36,22 @@
             </div>
         </div>
     </div>
-    <div class="header"><a href="" id="location-back">&lt;返回</a>hashLoad<a href="/hashLoad/" data-ajax="false">首页</a></div>
+    <div class="header"><a href="" id="location-back">&lt;返回</a>hashLoad<a href="demo.html" data-ajax="false">首页</a></div>
     <div class="content">
         <div id="page">
             <div class="hash-page" data-role="page">
                 <h1>DEMO页面</h1>
                 <ol class="page-list">
-                    <li><a href="/hashLoad/page/page_article.html" data-hash-cache="true">打开文章</a><em>打开一篇文章内容，页面中带有自己的css样式，并且有自己的js文件</em></li>
-                    <li><a href="/hashLoad/page/page_tab.html?page=1#page1" data-hash-cache="true">内页tab切换</a><em>在内页中切换已经存在的DOM，并默认展开第一个</em></li>
+                    <li><a href="/page/page_article.html">打开文章</a><em>打开一篇文章内容，页面中带有自己的css样式，并且有自己的js文件</em></li>
+                    <li><a href="/page/page_tab.html?page=1#page1">内页tab切换</a><em>在内页中切换已经存在的DOM，并默认展开第一个</em></li>
                 <ol>
             </div>
         </div>
     </div>
-    <!--
-    <script type="text/javascript" src="/hashLoad/src/js/jquery-2.1.1.min.js"></script>
-    -->
-    <script type="text/javascript" src="/hashLoad/src/js/zepto.min.js"></script>
-    <script type="text/javascript" src="/hashLoad/src/js/touch.min.js"></script>
+    <script type="text/javascript" src="/hashLoad/src/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/hashLoad/src/js/jquery.finger.min.js"></script>
     
-    <script type="text/javascript" src="/hashLoad/src/js/hash_load.min.js"></script>
-    <script type="text/javascript" src="/hashLoad/page/demo.js"></script>
+    <script type="text/javascript" src="/src/js/hash_load.min.js"></script>
+    <script type="text/javascript" src="/page/demo.js"></script>
 </body>
 </html>
