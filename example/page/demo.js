@@ -3,8 +3,8 @@ var page=new hashLoad({
     target:'#page'
 });
 //监听hash变化
-$(window).on('hashChangeInfo',function(data){
-    var order=parseInt(data._args[4]);
+$(window).on('hashChangeInfo',function(data,event,url,tab,load_type,tab_type,order,cache){
+    order=parseInt(order);
     if(order>0) $('.header a').show();
     else $('.header a').hide();
 });
