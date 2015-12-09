@@ -1,8 +1,9 @@
 /**
  * hashLoad是一个移动端的页面异步加载插件
- * 依赖：zepto.js(1.1.6),touch.js(zepot，如果没有touch，则监听click事件)
+ * 依赖：jquery.js,jquery.finger.js(如果没有touch，则监听click事件)
  * 创建：2015-12-01
  * 更新：
+ * 2015-12-09 v1.0.4 由于DOM性能的原因，弃用对zepto的支持，改用jquery+jquery finger。
  * 2015-12-02 v1.0.1 修复加载页面中js文件在zepto中引入失效的问题；修复定时器BUG；为防止全局污染，新增runScript（以及unScript）方法；
  */
 ;(function(){
@@ -54,7 +55,7 @@
 		_include:function(page,element){
 			var self=this;
 			element.html(page);
-			//对zepto没有处理html的script标签问题进行加载，会在页面内script执行前执行。
+			/*对zepto没有处理html的script标签问题进行加载，会在页面内script执行前执行。
 			if(window.Zepto){
 				//检测是否有javascript文件引入,如果有，则模拟浏览器加载js行为
 				for(var i in page.selector){
@@ -62,14 +63,14 @@
 						self._loadScript(page.selector[i].src);
 					}
 				}
-			}
+			}*/
 		},
-		_loadScript:function(url){
+		/*_loadScript:function(url){
 			$.ajax({
 				async:false,
 				url:url
 			});
-		},
+		},*/
 		/**
 		 * 初始化方法
 		 */
@@ -77,7 +78,7 @@
 			var self=this,
 			option=this.option,
 			action='click';
-			if($.fn.tap){//for zepto touch
+			if($.fn.tap){//for touch
 				action='tap';
 			}
 			$(document).on(action,'a',function(){
@@ -128,7 +129,7 @@
 			url=r[1]||self._getHashParam(hash,'url');
 			tab=r[2]||'';
 			tab=tab.replace('#','');
-			if(url===self._prev_url&&tab===self._prev_tab) return false;
+			if((url===self._prev_url&&tab===self._prev_tab)||self._timer._tab_timer||self._timer._load_timer) return false;
 			window.location.hash='url='+url+'&tab='+tab+'&load_type='+load_type+'&tab_type='+tab_type+'&order='+order+'&cache='+cache;
 		},
 		/**
@@ -177,12 +178,12 @@
 			tab_type=self._getHashParam(hash,'tab_type'),
 			order=self._getHashParam(hash,'order'),
 			cache=self._getHashParam(hash,'cache');
+			self._prev_tab=tab;
 			$(window).trigger('hashChangeInfo',[url,tab,load_type,tab_type,order,cache]);
 			if(url!==self._prev_url){
 				type=0;
 				self._prev_url=url;
 			}
-			self._prev_tab=tab;
 			if(tab){
 				self.tab(type);
 			}else{
@@ -270,7 +271,7 @@
 						$(target).removeClass('active').addClass('cur');
 						callback['hashTabShow'].call();
 						self._timer._tab_timer=null;
-					},1000);
+					},500);
 				}
 				//从左划出
 				else if(next.length>0){
@@ -283,7 +284,7 @@
 						$(target).removeClass('active').addClass('cur');
 						callback['hashTabShow'].call();
 						self._timer._tab_timer=null;
-					},1000);
+					},500);
 				}
 			}
 		},
@@ -356,7 +357,7 @@
 					self._include(content,$(target).find('.hash-page'));
 					//数据渲染完成
 					callback['hashPageCreated'].call();
-					$('#hashload-loading').hide();
+					$('#hash-loading').hide();
 					//数据展示完成
 					callback['hashPageShow'].call();
 				});
@@ -383,7 +384,7 @@
 							$(target).removeClass('hash-page-in').find('.hash-page').eq(0).remove();
 							self._timer._load_timer=null;
 							switchLoad();
-						},1000);
+						},500);
 						break;
 						case 'back':
 						$(target).prepend('<div class="hash-page hash-page-load" data-role="page">'+load_html+'</div>');
@@ -392,7 +393,7 @@
 							$(target).removeClass('hash-page-out').find('.hash-page').eq(1).remove();
 							self._timer._load_timer=null;
 							switchLoad();
-						},1000);
+						},500);
 						break;
 					}
 				}else{
@@ -434,7 +435,7 @@
 
 /**
  * 封装prevAll&nextAll
- */
+
 if(window.Zepto){
 	;(function($){
 		if(!$) return false;
@@ -458,4 +459,4 @@ if(window.Zepto){
 		}
 		$.extend($.fn,e);
 	})(Zepto);
-}
+} */

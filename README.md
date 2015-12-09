@@ -2,7 +2,7 @@ hashLoad
 =
 
 ## 介绍
-hashLoad是一个用于移动端页面异步加载的zepto插件。
+hashLoad是一个用于移动端页面异步加载的jquery插件。(1.0.4版本已去除对zepto的支持，性能对比见[http://jsperf.com/zepto-vs-jquery-2013/131](http://jsperf.com/zepto-vs-jquery-2013/131))
 通过使用location.hash实现页面内部的切换、页面的回退和前进操作。
 
 ## 手机访问
@@ -14,9 +14,9 @@ hashLoad是一个用于移动端页面异步加载的zepto插件。
 ```
 <!-- hashLoad 样式 -->
 <link href="./src/css/hash_load.css" rel="stylesheet">
-<!-- zepto 1.1.6 && touch,没有touch时将监听click事件 -->
-<script type="text/javascript" src="./src/js/zepto.min.js"></script>
-<script type="text/javascript" src="./src/js/touch.min.js"></script>
+<!-- jquery && finger,没有touch时将监听click事件 -->
+<script type="text/javascript" src="/hashLoad/src/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/hashLoad/src/js/jquery.finger.min.js"></script>
 <!-- hashLoad 插件程序 -->
 <script type="text/javascript" src="./src/js/hash_load.js"></script>
 ```
@@ -178,30 +178,9 @@ $(window).on('hashChangeInfo',function(data){
 ## javascript引入
 
 ### 文件加载
-在页面中定义的javascript会同步执行，在js文件中定义的javascript(注意js文件位置应相对于load页面位置);
 ```
-<!-- 页面中引入js文件 -->
+<!-- 在<div class="hash-page" data-role="page"></div>之间引入js/css文件 -->
 <script type="text/javascript" src="./page/page_test.js"></script>
-```
-注意：使用jQuery载入将正常加载，zepto中引入时，将在页面加载完成后加载js文件（不管js文件声明的位置在哪里），区别见下：
-```
-<script type="text/javascript" src="test.js"></script>
-<!-- test.js内容
-	console.log(1);
- -->
-<script type="text/javascript">
-console.log(2);
-</script>
-```
-在jQuery中为：
-```
-1
-2
-```
-在zepto中为：
-```
-2
-1
 ```
 
 ### 作用域
