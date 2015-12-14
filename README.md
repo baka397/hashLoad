@@ -171,8 +171,8 @@ $('#page1').on('hashTabShow',function(){
 ### window事件监听
 `hashChangeInfo` hash变更
 ```
-$(window).on('hashChangeInfo',function(data){
-    console.log(data._args);
+$(window).on('hashChangeInfo',function(event,url,tab,load_type,tab_type,order,cache){
+    console.log(url);
 });
 ```
 ## javascript引入
