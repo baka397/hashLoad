@@ -139,7 +139,7 @@ page.updateFunc('tab',{
  * @param  {string} url       链接地址
  * @param  {string} load_type load执行函数
  * @param  {string} tab_type  tab执行函数
- * @param  {boolen} cache     是否启用缓存
+ * @param  {string} cache     是否启用缓存,true/false
  */
 page.location('index.html');
 ```
