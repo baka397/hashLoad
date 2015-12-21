@@ -227,6 +227,7 @@
 			this.order=order;
 			function setTab(tab){
 				if(self._tab_func[tab_type]){
+					if($(tab).length===0) return false;
 					$(tab).trigger('pageBeforeLoaded');
 					self._tab_func[tab_type].call(self,tab,{
 						'hashTabBeforeShow':function(){//page加载事件
