@@ -228,9 +228,6 @@
 			function setTab(tab){
 				if(self._tab_func[tab_type]){
 					if($(tab).length===0){
-						$(tab).trigger('hashTabBeforeShow');
-						$(tab).trigger('hashTabShow');
-						$(tab).trigger('hashTabHide');
 						return false;
 					}
 					$(tab).trigger('pageBeforeLoaded');
