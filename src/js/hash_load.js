@@ -102,16 +102,14 @@
 					}
 				});
 			}
-			$(function(){
-				//初始化hash监测
-				if(window.location.hash){
-					self.analysisHash();
-				}
-				//监听hash变更事件
-				window.onhashchange=function(){
-					self.analysisHash();
-				}
-			});
+			//初始化hash监测
+			if(window.location.hash){
+				self.analysisHash();
+			}
+			//监听hash变更事件
+			window.onhashchange=function(){
+				self.analysisHash();
+			}
 		},
 		/**
 		 * 设置hash值
