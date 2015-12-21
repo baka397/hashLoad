@@ -366,6 +366,23 @@
 				$('#hash-loading').show();
 				var self=this;
 				callback['hashPageUnload'].call();
+				$.ajax({
+				  url: url,
+				  success: function(data){
+				  	//数据加载完成
+					callback['hashPageLoaded'].call();
+					if($(target).find('.hash-page')===0) $(target).html('<div class="hash-page" data-role="page"></div>');
+					content=self._parse(data);
+					self._include(content,$(target).find('.hash-page'));
+					//数据渲染完成
+					callback['hashPageCreated'].call();
+					$('#hash-loading').hide();
+					//数据展示完成
+					callback['hashPageShow'].call();
+				  },
+				  cache:true
+				});
+				/*
 				$.get(url,function(data){
 					//数据加载完成
 					callback['hashPageLoaded'].call();
@@ -378,6 +395,7 @@
 					//数据展示完成
 					callback['hashPageShow'].call();
 				});
+				*/
 			},
 			/**
 			 * 标签切换式方法，当action为forward时，右侧切入loading框，加载loading内容。当action为back时，左侧切入loading框，加载loading内容。须配合样式
@@ -418,6 +436,23 @@
 					$(target).append('<div class="hash-page hash-page-load" data-role="page">'+load_html+'</div>');
 				}
 				function switchLoad(){
+					$.ajax({
+					  url: url,
+					  success: function(data){
+					  	var content;
+						//数据加载完成
+						callback['hashPageLoaded'].call();
+						content=self._parse(data);
+						self._include(content,$(target).find('.hash-page-load'));
+						//数据渲染完成
+						callback['hashPageCreated'].call();
+						$(target).find('.hash-page-load').removeClass('hash-page-load');
+						//数据展示完成
+						callback['hashPageShow'].call();
+					  },
+					  cache:true
+					});
+					/*
 					$.get(url,function(data){
 						var content;
 						//数据加载完成
@@ -430,6 +465,7 @@
 						//数据展示完成
 						callback['hashPageShow'].call();
 					});
+					*/
 				}
 			}
 		},
