@@ -227,7 +227,12 @@
 			this.order=order;
 			function setTab(tab){
 				if(self._tab_func[tab_type]){
-					if($(tab).length===0) return false;
+					if($(tab).length===0){
+						$(tab).trigger('hashTabBeforeShow');
+						$(tab).trigger('hashTabShow');
+						$(tab).trigger('hashTabHide');
+						return false;
+					}
 					$(tab).trigger('pageBeforeLoaded');
 					self._tab_func[tab_type].call(self,tab,{
 						'hashTabBeforeShow':function(){//page加载事件
@@ -237,7 +242,7 @@
 							$(tab).trigger('hashTabShow');
 						},
 						'hashTabHide':function(tab){//page加载事件
-							tab.trigger('hashTabHide');
+							$(tab).trigger('hashTabHide');
 						}
 					});
 				}else{
@@ -342,9 +347,17 @@
 					},
 					'hashPageShow':function(){//page加载事件
 						$(target).trigger('hashPageShow');
+						if(self._script_func['run']){
+							self._script_func['run'].call();
+							self._script_func['run']=null;
+						}
 					},
 					'hashPageUnload':function(){//page加载事件
 						$(window).trigger('hashPageUnload');
+						if(self._script_func['un']){
+							self._script_func['un'].call();
+							self._script_func['un']=null;
+						}
 					}
 				});
 			}else{
@@ -475,13 +488,14 @@
 		 * @param  {Function} callback 回调函数
 		 */
 		runScript:function(callback){
-			if(callback) callback.call();
+			if(callback) this._script_func['run']=callback;
 		},
 		unScript:function(callback){
-			if(!callback) return false;
-			$(window).one('hashPageUnload',function(){
-				callback.call();
-			});
+			if(callback) this._script_func['un']=callback;
+		},
+		_script_func:{
+			run:null,
+			un:null
 		}
 	}
 	window.hashLoad=hashLoad;
