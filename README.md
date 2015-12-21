@@ -191,9 +191,15 @@ page.runScript(function(){
 });
 ```
 
-当当前页面卸载时，可以使用以下代码执行卸载前操作
+当前页面卸载时，可以使用以下代码执行卸载前操作
 ```
 page.unScript(function(){
 	//在这里写入js代码
 });
+```
+## 获取hash信息
+使用`getHash`方法可以获取hash信息
+```
+var hashdata=page.getHash();
+console.log(hashdata.url);
 ```

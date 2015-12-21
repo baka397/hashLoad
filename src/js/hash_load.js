@@ -191,6 +191,23 @@
 			}
 		},
 		/**
+		 * 获取hash信息
+		 * @return {array} hash信息
+		 */
+		getHash:function(){
+			var self=this,
+			hash=window.location.hash,
+			data={};
+
+			data.url=self._getHashParam(hash,'url');
+			data.tab=self._getHashParam(hash,'tab');
+			data.load_type=self._getHashParam(hash,'load_type');
+			data.tab_type=self._getHashParam(hash,'tab_type');
+			data.order=self._getHashParam(hash,'order');
+			data.cache=self._getHashParam(hash,'cache');
+			return data;
+		},
+		/**
 		 * 标签切换方法
 		 */
 		tab:function(type){
