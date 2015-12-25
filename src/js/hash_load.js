@@ -84,7 +84,7 @@
 			$(document).on(action,'a',function(){
 				var href=$(this).attr('href');
 				//检测ajax选项是否关闭或者为特殊的链接（以javascript:开头，单个#，或者空链接）时，不执行hash操作
-				if($(this).attr('data-ajax')!='false'&&!href.match(/^(javascript\:|#$|$)/)){
+				if($(this).attr('data-ajax')!='false'&&!/^(javascript\:|#$|$)/.test(href)){
 					var url=href,
 					load_type=$(this).attr('data-hash-load')||self.option.load,//load类型
 					tab_type=$(this).attr('data-hash-tab')||self.option.tab,
@@ -97,7 +97,7 @@
 				//屏蔽a标签点击事件
 				$(document).on('click','a',function(){
 					var href=$(this).attr('href');
-					if($(this).attr('data-ajax')!='false'&&!href.match(/^(javascript\:|#$|$)/)){
+					if($(this).attr('data-ajax')!='false'||/^(#$|$)/.test(href)){
 						return false;
 					}
 				});
