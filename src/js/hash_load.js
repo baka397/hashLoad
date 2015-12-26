@@ -110,6 +110,11 @@
 			window.onhashchange=function(){
 				self.analysisHash();
 			}
+			//初始化运行
+			if(self._script_func['run']){
+				self._script_func['run'].call();
+				self._script_func['run']=null;
+			}
 		},
 		/**
 		 * 设置hash值
