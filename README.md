@@ -136,10 +136,12 @@ page.updateFunc('tab',{
 ## js执行页面跳转
 ```
 /**
+ * js重定向方法
  * @param  {string} url       链接地址
  * @param  {string} load_type load执行函数
  * @param  {string} tab_type  tab执行函数
- * @param  {string} cache     是否启用缓存,true/false
+ * @param  {boolen} cache     是否启用缓存
+ * @param  {number} order     顺序增减,-1为后退，1为前进，默认为前进
  */
 page.location('index.html');
 ```

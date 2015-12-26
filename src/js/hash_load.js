@@ -3,6 +3,7 @@
  * 依赖：jquery.js,jquery.finger.js(如果没有touch，则监听click事件)
  * 创建：2015-12-01
  * 更新：
+ * 2015-12-26 v1.1.0 变更url的配置，不再在hash信息中存储,location方法优化
  * 2015-12-09 v1.0.4 由于DOM性能的原因，弃用对zepto的支持，改用jquery+jquery finger。
  * 2015-12-02 v1.0.1 修复加载页面中js文件在zepto中引入失效的问题；修复定时器BUG；为防止全局污染，新增runScript（以及unScript）方法；
  */
@@ -102,12 +103,14 @@
 					}
 				});
 			}
-			//初始化hash监测
 			if(window.location.hash){
-				self.analysisHash();
+				//更新order
+				self.order=parseInt(self._getHashParam(window.location.hash,'order'))||0;
+				if(self._getHashParam(window.location.hash,'tab')){
+					self.analysisHash();
+				}
 			}
-			//监听hash变更事件
-			window.onhashchange=function(){
+			window.onpopstate=function(){
 				self.analysisHash();
 			}
 			//初始化运行
@@ -118,15 +121,16 @@
 		},
 		/**
 		 * 设置hash值
-		 * @param {string} location  url的location值
-		 * @param {string} load_type load执行函数
-		 * @param {string} tab_type  tab执行函数
-		 * @param {string} cache     是否启用缓存,true/fase
+		 * @param {string} location   url的location值
+		 * @param {string} load_type  load执行函数
+		 * @param {string} tab_type   tab执行函数
+		 * @param {string} cache      是否启用缓存,true/fase
+		 * @param {number} order_plus 增减数量
 		 */
-		setHash:function(location,load_type,tab_type,cache){
+		setHash:function(location,load_type,tab_type,cache,order_plus){
 			var self=this,
 			hash=window.location.hash;
-			order=self.order+1,
+			order=order_plus?self.order+=order_plus:self.order+1,
 			tab='',
 			url='',
 			reg=new RegExp(/^([^\#]*)(\#[^\#]+|)$/),
@@ -135,7 +139,8 @@
 			tab=r[2]||'';
 			tab=tab.replace('#','');
 			if((url===self._prev_url&&tab===self._prev_tab)||self._timer._tab_timer||self._timer._load_timer) return false;
-			window.location.hash='url='+url+'&tab='+tab+'&load_type='+load_type+'&tab_type='+tab_type+'&order='+order+'&cache='+cache;
+			history.pushState(null,'',url+'#tab='+tab+'&load_type='+load_type+'&tab_type='+tab_type+'&order='+order+'&cache='+cache);
+			self.analysisHash();
 		},
 		/**
 		 * 扩展加载方法
@@ -156,8 +161,9 @@
 		 * @param  {string} load_type load执行函数
 		 * @param  {string} tab_type  tab执行函数
 		 * @param  {boolen} cache     是否启用缓存
+		 * @param  {number} order     顺序增减
 		 */
-		location:function(url,load_type,tab_type,cache){
+		location:function(url,load_type,tab_type,cache,order){
 			var self=this,
 			hash=window.location.hash,
 			location_url=url,
@@ -168,7 +174,7 @@
 				throw '没有设置url';
 				return false;
 			}
-			self.setHash(location_url,location_load_type,location_tab_type,location_cache);
+			self.setHash(location_url,location_load_type,location_tab_type,location_cache,order);
 		},
 		/**
 		 * 分析hash链接
@@ -176,7 +182,7 @@
 		analysisHash:function(){
 			var self=this,
 			hash=window.location.hash,
-			url=self._getHashParam(hash,'url'),
+			url=window.location.href.replace(hash,''),
 			type=1,
 			tab=self._getHashParam(hash,'tab'),
 			load_type=self._getHashParam(hash,'load_type'),
@@ -185,7 +191,7 @@
 			cache=self._getHashParam(hash,'cache');
 			self._prev_tab=tab;
 			$(window).trigger('hashChangeInfo',[url,tab,load_type,tab_type,order,cache]);
-			if(url!==self._prev_url){
+			if(self._prev_url&&url!==self._prev_url){
 				type=0;
 				self._prev_url=url;
 			}
@@ -204,7 +210,7 @@
 			hash=window.location.hash,
 			data={};
 
-			data.url=self._getHashParam(hash,'url');
+			data.url=window.location.href.replace(hash,'');
 			data.tab=self._getHashParam(hash,'tab');
 			data.load_type=self._getHashParam(hash,'load_type');
 			data.tab_type=self._getHashParam(hash,'tab_type');
@@ -218,7 +224,7 @@
 		tab:function(type){
 			var self=this,
 			hash=window.location.hash,
-			url=self._getHashParam(hash,'url'),
+			url=window.location.href.replace(hash,''),
 			tab='#'+self._getHashParam(hash,'tab'),
 			tab_type=self._getHashParam(hash,'tab_type')||self.option.tab,
 			order=parseInt(self._getHashParam(hash,'order'))||this.order;
@@ -319,10 +325,10 @@
 		load:function(callback){
 			var self=this,
 			hash=window.location.hash,
-			url=self._getHashParam(hash,'url'),
+			url=window.location.href.replace(hash,''),
 			load_type=self._getHashParam(hash,'load_type')||self.option.load,
 			order=parseInt(self._getHashParam(hash,'order'))||this.order,
-			action=order>=this.order?'forward':'back',
+			action=order>this.order?'forward':'back',
 			cache=self._getHashParam(hash,'cache')==='true'?true:false,
 			target=self.option.target;
 			if(!url){
