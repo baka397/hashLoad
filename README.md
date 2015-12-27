@@ -58,7 +58,7 @@ cache:false//页面缓存
 <a href="#">无意义占位符</a>
 <a href="">空链接</a>
 ```
-通过在a标签添加`data-hash-load`属性定义load的加载方法名（默认为配置项）。添加`data-hash-cache`(true/false，默认为false)开启缓存。
+通过在a标签添加`data-hash-load`属性定义load的加载方法名（默认为配置项）。添加`data-hash-cache`(true/false，默认为false)开启缓存。添加`data-hash-order`(1/-1，默认为1)来控制前进和后退
 
 ### tab切换
 ```

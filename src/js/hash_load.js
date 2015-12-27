@@ -89,8 +89,9 @@
 					var url=href,
 					load_type=$(this).attr('data-hash-load')||self.option.load,//load类型
 					tab_type=$(this).attr('data-hash-tab')||self.option.tab,
-					cache=$(this).attr('data-hash-cache')||self.option.cache;//缓存
-					self.setHash(url,load_type,tab_type,cache);
+					cache=$(this).attr('data-hash-cache')||self.option.cache,
+					order_plus=parseInt($(this).attr('data-hash-order'))||1;//缓存
+					self.setHash(url,load_type,tab_type,cache,order_plus);
 					return false;
 				}
 			});
@@ -131,7 +132,7 @@
 		setHash:function(location,load_type,tab_type,cache,order_plus){
 			var self=this,
 			hash=window.location.hash;
-			order=order_plus?self.order+=order_plus:self.order+1,
+			order=order_plus?self.order+order_plus:self.order+1,
 			tab='',
 			url='',
 			reg=new RegExp(/^([^\#]*)(\#[^\#]+|)$/),
@@ -329,7 +330,7 @@
 			url=window.location.href.replace(hash,''),
 			load_type=self._getHashParam(hash,'load_type')||self.option.load,
 			order=parseInt(self._getHashParam(hash,'order'))||this.order,
-			action=order>this.order?'forward':'back',
+			action=order>=this.order?'forward':'back',
 			cache=self._getHashParam(hash,'cache')==='true'?true:false,
 			target=self.option.target;
 			if(!url){
