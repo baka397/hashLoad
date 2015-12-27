@@ -103,6 +103,7 @@
 					}
 				});
 			}
+			self._prev_url=window.location.href.replace(window.location.hash,'');
 			if(window.location.hash){
 				//更新order
 				self.order=parseInt(self._getHashParam(window.location.hash,'order'))||0;
