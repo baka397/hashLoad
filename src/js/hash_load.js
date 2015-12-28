@@ -104,17 +104,17 @@
 					}
 				});
 			}
-			self._prev_url=window.location.href.replace(window.location.hash,'');
+			this._prev_url=window.location.href.replace(window.location.hash,'');
 			if(window.location.hash){
 				//更新order
-				self.order=parseInt(self._getHashParam(window.location.hash,'order'))||0;
+				this.order=parseInt(self._getHashParam(window.location.hash,'order'))||0;
 				if(self._getHashParam(window.location.hash,'tab')){
 					self.analysisHash();
 				}
 			}
-			window.onpopstate=function(){
+			window.addEventListener('popstate', function(){
 				self.analysisHash();
-			}
+			});
 			//初始化运行
 			if(self._script_func['run']){
 				self._script_func['run'].call();
@@ -195,7 +195,6 @@
 			$(window).trigger('hashChangeInfo',[url,tab,load_type,tab_type,order,cache]);
 			if(self._prev_url&&url!==self._prev_url){
 				type=0;
-				self._prev_url=url;
 			}
 			if(tab){
 				self.tab(type);
@@ -329,14 +328,19 @@
 			hash=window.location.hash,
 			url=window.location.href.replace(hash,''),
 			load_type=self._getHashParam(hash,'load_type')||self.option.load,
-			order=parseInt(self._getHashParam(hash,'order'))||this.order,
+			order=parseInt(self._getHashParam(hash,'order'))||0,
 			action=order>=this.order?'forward':'back',
 			cache=self._getHashParam(hash,'cache')==='true'?true:false,
 			target=self.option.target;
+			//alert(url);
+			if(url===self._prev_url){
+				return false;
+			}
 			if(!url){
 				window.location.reload();
 				return false;
 			}
+			self._prev_url=url;
 			if(!cache){
 				if(/\?/.test(url)){
 					url+='&timestamp='+new Date().getTime();
